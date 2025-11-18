@@ -13,14 +13,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class Vistas {
-
     private static final String ESTILO_FONDO = "-fx-background-color: #2b2b2b;";
     private static final String ESTILO_TITULO = "-fx-font-size: 24px; -fx-font-weight: bold; -fx-fill: #E0E0E0;";
     private static final String ESTILO_SUBTITULO = "-fx-font-size: 18px; -fx-font-weight: normal; -fx-fill: #E0E0E0;";
     private static final String ESTILO_LABEL = "-fx-text-fill: #CCCCCC;";
     private static final String ESTILO_BOTON_ROJO = "-fx-background-color: #c70000; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 5;";
     private static final String ESTILO_BOTON_GRIS = "-fx-background-color: #555555; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;";
-
 
     public static Scene crearEscenaLogin(ControladorCine controlador) {
         GridPane grid = new GridPane();
@@ -120,7 +118,18 @@ public class Vistas {
             layout.getChildren().add(btnSala);
         }
 
-        return new Scene(layout, 400, 400);
+        Button btnSalir = new Button("Cerrar Sesión");
+        btnSalir.setPrefSize(300, 40);
+        btnSalir.setStyle(ESTILO_BOTON_GRIS); 
+
+        btnSalir.setOnAction(e -> {
+            controlador.aplicacion.mostrarLogin(); 
+
+        });
+
+        layout.getChildren().add(btnSalir);
+        
+        return new Scene(layout, 400, 500);
     }
 
 
