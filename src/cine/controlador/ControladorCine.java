@@ -4,8 +4,10 @@ import cine.Main;
 import cine.modelo.*;
 import cine.persistencia.PersistenciaDatos;
 import cine.vista.Alerta;
+import java.util.List;
 
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class ControladorCine {
 
@@ -93,6 +95,16 @@ public class ControladorCine {
         } else {
              Alerta.mostrarAlerta("Error", "La butaca no se pudo ocupar. Intente de nuevo.", Alerta.Tipo.ERROR);
         }
+    }
+    
+    public List<Entrada> getEntradasUsuarioLogueado() {
+        if (clienteActual == null) {
+            return List.of();
+        }
+        
+        return cine.getEntradasVendidas().stream()
+                .filter(e -> e.getCliente().getEmail().equals(clienteActual.getEmail()))
+                .collect(Collectors.toList());
     }
 
     public Cine getCine() {
