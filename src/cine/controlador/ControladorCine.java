@@ -83,13 +83,20 @@ public class ControladorCine {
              Alerta.mostrarAlerta("Error", "Esta butaca ya esta ocupada.", Alerta.Tipo.ERROR);
              return;
         }
+        
 
         if (butaca.ocupar()) {
             Entrada nuevaEntrada = new Entrada(clienteActual, sala, butaca);
             cine.agregarEntrada(nuevaEntrada);
+            guardarDatos(); 
+
+            String mensajeTicket = "Pelicula: " + sala.getPelicula() + "\n" +
+                                   "Sala: " + sala.getNumero() + "\n" +
+                                   "Ubicacion: Fila " + butaca.getFila() + " - Asiento " + butaca.getNumero() + "\n" +
+                                   "Cliente: " + clienteActual.getNombre();
 
             System.out.println("Entrada comprada: " + nuevaEntrada);
-            Alerta.mostrarAlerta("Compra Exitosa", "¡Disfrute la funcion!\n" + nuevaEntrada, Alerta.Tipo.INFO);
+            Alerta.mostrarAlerta("Compra Exitosa", "¡Disfrute la función!\n\n" + mensajeTicket, Alerta.Tipo.INFO);
 
             aplicacion.mostrarSeleccionSala();
         } else {
