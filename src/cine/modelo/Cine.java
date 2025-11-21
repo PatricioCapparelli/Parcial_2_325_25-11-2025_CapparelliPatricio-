@@ -42,7 +42,14 @@ public class Cine implements Serializable {
         
         return Optional.empty(); 
     }
-
+    
+    public void reiniciarSistema() {
+        entradas.vaciar(); 
+        
+        for (Sala s : salas.getTodos()) {
+            s.liberarTodasLasButacas();
+        }
+    }
     public void agregarSala(Sala sala) {
         salas.agregar(sala);
     }

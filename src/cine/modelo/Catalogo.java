@@ -29,6 +29,10 @@ public class Catalogo<T> implements Serializable {
     public List<T> getTodos() {
         return elementos;
     }
+    
+    public void vaciar() {
+        this.elementos.clear();
+    }
 
     public Optional<T> buscar(Predicate<T> criterio) {
         return elementos.stream()

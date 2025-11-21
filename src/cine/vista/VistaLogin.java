@@ -10,7 +10,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
 public class VistaLogin {
-
     public static Scene crear(ControladorCine controlador) {
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
@@ -83,7 +82,6 @@ public class VistaLogin {
                 regPwField.getText()
             )
         );
-
         return new Scene(grid, 400, 500);
     }
 }

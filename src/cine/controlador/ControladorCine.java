@@ -33,12 +33,15 @@ public class ControladorCine {
     private void crearDatosPrueba() {
         System.out.println("Creando datos iniciales...");
         this.cine = new Cine();
-        this.cine.agregarSala(new Sala(1, "El padrino", 5, 8));
-        this.cine.agregarSala(new Sala(2, "Fuego contra fuego", 8, 10));
-        this.cine.agregarSala(new Sala(3, "Scarface", 15, 10));
+        this.cine.agregarSala(new Sala(1, "El Padrino", 5, 8, "padrino.png"));
+        this.cine.agregarSala(new Sala(2, "Matrix", 6, 6, "matrix.png"));
+        this.cine.agregarSala(new Sala(3, "Scarface", 8, 10, "scarface.png"));
+        this.cine.agregarSala(new Sala(4, "Terminator", 6, 8, "terminator.png"));
+        this.cine.agregarSala(new Sala(5, "Depredator", 6, 6, "predator.png"));
+        this.cine.agregarSala(new Sala(6, "Titanic", 8, 10, "titanic.png"));
 
         String passHash = PasswordUtil.hashearPassword("1234");
-        this.cine.agregarCliente(new Cliente("Usuario Ejemplo", "user@cine.com", passHash));
+        this.cine.agregarCliente(new Cliente("Admin", "admin@cine.com", passHash));
     }
 
     public void intentoDeRegistro(String nombre, String email, String password) {
@@ -110,7 +113,6 @@ public class ControladorCine {
                                    "Gracias por su compra!";
 
             Alerta.mostrarAlerta("Compra Exitosa", mensajeTicket, Alerta.Tipo.INFO);
-
             aplicacion.mostrarSeleccionSala();
         } else {
              Alerta.mostrarAlerta("Error", "La butaca no se pudo ocupar.", Alerta.Tipo.ERROR);
@@ -124,12 +126,31 @@ public class ControladorCine {
     public void guardarDatos() {
         PersistenciaDatos.guardarCine(cine, ARCHIVO_PERSISTENCIA);
     }
+    
+    public void navegarAMisEntradas() {
+        aplicacion.mostrarMisEntradas();
+    }
 
-    // Le dejo el nombre nuevo "getMisEntradas"
     public List<Entrada> getMisEntradas() {
         if (clienteActual == null) return List.of();
         return cine.getEntradasVendidas().stream()
                 .filter(e -> e.getCliente().getEmail().equals(clienteActual.getEmail()))
                 .collect(Collectors.toList());
+    }
+    
+    public boolean esAdmin() {
+        return clienteActual != null && clienteActual.getEmail().equals("admin@cine.com");
+    }
+    
+    public void reiniciarTodo() {
+        cine.reiniciarSistema(); 
+        guardarDatos();     
+        Alerta.mostrarAlerta("Sistema Reiniciado", "Todas las butacas han sido liberadas y el historial borrado.", Alerta.Tipo.INFO);
+        aplicacion.mostrarSeleccionSala();
+    }
+    
+    public void cerrarSesion() {
+        this.clienteActual = null;
+        aplicacion.mostrarLogin();
     }
 }

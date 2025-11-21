@@ -59,15 +59,13 @@ public class VistaButacas {
                 btnButaca.setPrefSize(60, 40);
                 btnButaca.setUserData(butaca);
 
-                // Estado inicial visual
                 if (butaca.getEstado() == EstadoButaca.OCUPADA) {
                     btnButaca.setStyle("-fx-background-color: #F08080;"); 
                     btnButaca.setDisable(true);
                 } else {
                     btnButaca.setStyle("-fx-background-color: #90EE90;"); 
                 }
-
-                
+       
                 btnButaca.setOnAction(e -> {
                     if (btnButaca.isSelected()) {
                         btnButaca.setStyle("-fx-background-color: #FFD700;"); 
