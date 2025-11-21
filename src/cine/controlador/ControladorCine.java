@@ -103,8 +103,13 @@ public class ControladorCine {
             cine.agregarEntrada(nuevaEntrada);
             guardarDatos(); 
 
-            System.out.println("Entrada comprada: " + nuevaEntrada);
-            Alerta.mostrarAlerta("Compra Exitosa", "¡Disfrute la función!", Alerta.Tipo.INFO);
+            String mensajeTicket = "Pelicula: " + sala.getPelicula() + "\n" +
+                                   "Sala: " + sala.getNumero() + "\n" +
+                                   "Ubicacion: Fila " + butaca.getFila() + " - Asiento " + butaca.getNumero() + "\n" +
+                                   "Cliente: " + clienteActual.getNombre() + "\n\n" +
+                                   "Gracias por su compra!";
+
+            Alerta.mostrarAlerta("Compra Exitosa", mensajeTicket, Alerta.Tipo.INFO);
 
             aplicacion.mostrarSeleccionSala();
         } else {
