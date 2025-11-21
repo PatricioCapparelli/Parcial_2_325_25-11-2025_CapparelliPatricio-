@@ -31,7 +31,7 @@ public class VistaMisEntradas {
         listaContainer.setStyle(Estilos.FONDO);
         listaContainer.setAlignment(Pos.TOP_CENTER);
 
-        List<Entrada> misEntradas = controlador.getEntradasUsuarioLogueado();
+        List<Entrada> misEntradas = controlador.getMisEntradas();
 
         if (misEntradas.isEmpty()) {
             Label lblVacio = new Label("No tienes entradas compradas aún.");

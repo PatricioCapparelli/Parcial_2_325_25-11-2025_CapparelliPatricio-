@@ -1,5 +1,6 @@
 package cine.modelo;
 
+import cine.util.PasswordUtil;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
@@ -27,13 +28,18 @@ public class Cine implements Serializable {
         return clientes.buscar(c -> Objects.equals(c.getEmail(), email));
     }
 
-    public Optional<Cliente> login(String email, String password) {
-        Optional<Cliente> cliente = buscarCliente(email);
-        if (cliente.isPresent()) {
-            if (cliente.get().verifyPassword(password)) {
-                return cliente; 
+    public Optional<Cliente> login(String email, String passwordIngresada) {
+        Optional<Cliente> clienteOpt = buscarCliente(email);
+        
+        if (clienteOpt.isPresent()) {
+            Cliente c = clienteOpt.get();
+            String hashGuardado = c.getPassword(); 
+
+            if (PasswordUtil.verificarPassword(passwordIngresada, hashGuardado)) {
+                return clienteOpt; 
             }
         }
+        
         return Optional.empty(); 
     }
 

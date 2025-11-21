@@ -1,40 +1,29 @@
 package cine.modelo;
 
-import java.util.Objects;
+import java.io.Serializable;
 
-public class Cliente extends Persona {
-
+public class Cliente implements Serializable {
+    
     private static final long serialVersionUID = 1L;
-
-    private String password;
+    
+    private String nombre;
+    private String email;
+    private String password; 
 
     public Cliente(String nombre, String email, String password) {
-        super(nombre, email);
+        this.nombre = nombre;
+        this.email = email;
         this.password = password;
     }
 
-    public boolean verifyPassword(String password) {
-        return this.password.equals(password);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Cliente cliente = (Cliente) o;
-        return email.equals(cliente.email);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(email);
-    }
-
+    public String getNombre() { return nombre; }
+    
+    public String getEmail() { return email; }
+    
+    public String getPassword() { return password; } 
+    
     @Override
     public String toString() {
-        return "Cliente{" +
-                "nombre='" + nombre + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+        return "Cliente: " + nombre;
     }
 }
