@@ -82,7 +82,6 @@ public class ControladorCine {
         }
     }
 
-
     public void seleccionarSala(Sala sala) {
         System.out.println("Sala seleccionada: " + sala.getPelicula());
         aplicacion.mostrarButacas(sala);
@@ -90,14 +89,14 @@ public class ControladorCine {
 
     public void comprarEntrada(Sala sala, int filaIdx, int numIdx) {
         if (clienteActual == null) {
-            Alerta.mostrarAlerta("Error", "Debe iniciar sesión para comprar.", Alerta.Tipo.ERROR);
+            Alerta.mostrarAlerta("Error", "Debe iniciar sesion para comprar.", Alerta.Tipo.ERROR);
             return;
         }
 
         Butaca butaca = sala.getButacas()[filaIdx][numIdx];
 
         if (butaca.getEstado() == EstadoButaca.OCUPADA) {
-             Alerta.mostrarAlerta("Error", "Esta butaca ya está ocupada.", Alerta.Tipo.ERROR);
+             Alerta.mostrarAlerta("Error", "Esta butaca ya esta ocupada.", Alerta.Tipo.ERROR);
              return;
         }
 

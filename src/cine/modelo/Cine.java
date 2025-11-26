@@ -39,7 +39,6 @@ public class Cine implements Serializable {
                 return clienteOpt; 
             }
         }
-        
         return Optional.empty(); 
     }
     
@@ -50,6 +49,7 @@ public class Cine implements Serializable {
             s.liberarTodasLasButacas();
         }
     }
+    
     public void agregarSala(Sala sala) {
         salas.agregar(sala);
     }

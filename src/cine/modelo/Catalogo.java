@@ -7,7 +7,6 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 public class Catalogo<T> implements Serializable {
-
     private static final long serialVersionUID = 1L;
 
     private List<T> elementos;

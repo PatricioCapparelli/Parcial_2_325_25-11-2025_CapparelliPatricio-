@@ -25,7 +25,7 @@ public class Main extends Application {
         controlador.iniciarDatos();
 
         primaryStage.setOnCloseRequest(e -> {
-            System.out.println("Cerrando aplicación y guardando datos...");
+            System.out.println("Cerrando aplicacion y guardando datos.");
             controlador.guardarDatos();
         });
 
@@ -46,7 +46,7 @@ public class Main extends Application {
     public void mostrarSeleccionSala() {
         try {
             Scene escenaSalas = VistaSeleccionSala.crear(controlador);
-            primaryStage.setTitle("Selección de Película");
+            primaryStage.setTitle("Seleccion de Pelicula");
             primaryStage.setScene(escenaSalas);
         } catch (Exception e) {
             e.printStackTrace();
